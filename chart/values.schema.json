@@ -113,7 +113,8 @@
                     "type": "boolean"
                 },
                 "ingressClassName": {
-                    "type": "string"
+                    "type": "string",
+                    "optional": true
                 },
                 "tls": {
                     "$ref": "#/definitions/IngressTLS"
@@ -157,7 +158,8 @@
                     "type": "string"
                 },
                 "cliClientID": {
-                    "type": "string"
+                    "type": "string",
+                    "optional": true
                 },
                 "dex": {
                     "$ref": "#/definitions/Dex"
