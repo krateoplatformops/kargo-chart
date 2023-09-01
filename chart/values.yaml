@@ -43,7 +43,7 @@ api:
     ## false.
     enabled: false
     
-    ingressClassName:
+    ingressClassName: ""
     tls:
       ## Whether to enable TLS.
       ##
@@ -145,7 +145,7 @@ api:
     ##
     ## If Dex is not enabled, and a different client app is configured for
     ## localhost CLI login, this should be the client ID configured in the IdP.
-    cliClientID:
+    cliClientID: ""
 
     dex:
 
