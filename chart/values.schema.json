@@ -1,0 +1,415 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome5",
+    "definitions": {
+        "Welcome5": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "image": {
+                    "$ref": "#/definitions/Welcome5Image"
+                },
+                "rbac": {
+                    "$ref": "#/definitions/Rbac"
+                },
+                "api": {
+                    "$ref": "#/definitions/API"
+                },
+                "controller": {
+                    "$ref": "#/definitions/Controller"
+                },
+                "webhooks": {
+                    "$ref": "#/definitions/Webhooks"
+                },
+                "webhooksServer": {
+                    "$ref": "#/definitions/WebhooksServer"
+                },
+                "garbageCollector": {
+                    "$ref": "#/definitions/GarbageCollector"
+                }
+            },
+            "required": [
+                "api",
+                "controller",
+                "garbageCollector",
+                "image",
+                "rbac",
+                "webhooks",
+                "webhooksServer"
+            ],
+            "title": "Welcome5"
+        },
+        "API": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "ingress": {
+                    "$ref": "#/definitions/Ingress"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "logLevel": {
+                    "type": "string"
+                },
+                "service": {
+                    "$ref": "#/definitions/Service"
+                },
+                "adminAccount": {
+                    "$ref": "#/definitions/AdminAccount"
+                },
+                "oidc": {
+                    "$ref": "#/definitions/Oidc"
+                }
+            },
+            "required": [
+                "adminAccount",
+                "enabled",
+                "host",
+                "ingress",
+                "logLevel",
+                "oidc",
+                "protocol",
+                "service"
+            ],
+            "title": "API"
+        },
+        "AdminAccount": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "tokenSigningKey": {
+                    "type": "string"
+                },
+                "tokenTTL": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "password",
+                "tokenSigningKey",
+                "tokenTTL"
+            ],
+            "title": "AdminAccount"
+        },
+        "Ingress": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "ingressClassName": {
+                    "type": "null"
+                },
+                "tls": {
+                    "$ref": "#/definitions/IngressTLS"
+                }
+            },
+            "required": [
+                "enabled",
+                "ingressClassName",
+                "tls"
+            ],
+            "title": "Ingress"
+        },
+        "IngressTLS": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "selfSignedCert": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled",
+                "selfSignedCert"
+            ],
+            "title": "IngressTLS"
+        },
+        "Oidc": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "issuerURL": {
+                    "type": "string"
+                },
+                "clientID": {
+                    "type": "string"
+                },
+                "cliClientID": {
+                    "type": "null"
+                },
+                "dex": {
+                    "$ref": "#/definitions/Dex"
+                }
+            },
+            "required": [
+                "cliClientID",
+                "clientID",
+                "dex",
+                "enabled",
+                "issuerURL"
+            ],
+            "title": "Oidc"
+        },
+        "Dex": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "image": {
+                    "$ref": "#/definitions/DexImage"
+                },
+                "tls": {
+                    "$ref": "#/definitions/DexTLS"
+                },
+                "skipApprovalScreen": {
+                    "type": "boolean"
+                },
+                "connectors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Connector"
+                    }
+                }
+            },
+            "required": [
+                "connectors",
+                "enabled",
+                "image",
+                "skipApprovalScreen",
+                "tls"
+            ],
+            "title": "Dex"
+        },
+        "Connector": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "type"
+            ],
+            "title": "Connector"
+        },
+        "DexImage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "repository": {
+                    "type": "string"
+                },
+                "tag": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pullPolicy",
+                "repository",
+                "tag"
+            ],
+            "title": "DexImage"
+        },
+        "DexTLS": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "selfSignedCert": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "selfSignedCert"
+            ],
+            "title": "DexTLS"
+        },
+        "Service": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "Service"
+        },
+        "Controller": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "argocd": {
+                    "$ref": "#/definitions/Argocd"
+                },
+                "logLevel": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "argocd",
+                "enabled",
+                "logLevel"
+            ],
+            "title": "Controller"
+        },
+        "Argocd": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "namespace": {
+                    "type": "string"
+                },
+                "watchArgocdNamespaceOnly": {
+                    "type": "boolean"
+                },
+                "enableCredentialBorrowing": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enableCredentialBorrowing",
+                "namespace",
+                "watchArgocdNamespaceOnly"
+            ],
+            "title": "Argocd"
+        },
+        "GarbageCollector": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "schedule": {
+                    "type": "string"
+                },
+                "workers": {
+                    "type": "integer"
+                },
+                "maxRetainedPromotions": {
+                    "type": "integer"
+                },
+                "logLevel": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "enabled",
+                "logLevel",
+                "maxRetainedPromotions",
+                "schedule",
+                "workers"
+            ],
+            "title": "GarbageCollector"
+        },
+        "Welcome5Image": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "repository": {
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pullPolicy",
+                "repository"
+            ],
+            "title": "Welcome5Image"
+        },
+        "Rbac": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "installClusterRoles": {
+                    "type": "boolean"
+                },
+                "installClusterRoleBindings": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "installClusterRoleBindings",
+                "installClusterRoles"
+            ],
+            "title": "Rbac"
+        },
+        "Webhooks": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "register": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "register"
+            ],
+            "title": "Webhooks"
+        },
+        "WebhooksServer": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "logLevel": {
+                    "type": "string"
+                },
+                "tls": {
+                    "$ref": "#/definitions/DexTLS"
+                }
+            },
+            "required": [
+                "enabled",
+                "logLevel",
+                "tls"
+            ],
+            "title": "WebhooksServer"
+        }
+    }
+}
