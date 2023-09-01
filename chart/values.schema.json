@@ -113,7 +113,7 @@
                     "type": "boolean"
                 },
                 "ingressClassName": {
-                    "type": "null"
+                    "type": "string"
                 },
                 "tls": {
                     "$ref": "#/definitions/IngressTLS"
