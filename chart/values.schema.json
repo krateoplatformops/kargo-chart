@@ -157,7 +157,7 @@
                     "type": "string"
                 },
                 "cliClientID": {
-                    "type": "null"
+                    "type": "string"
                 },
                 "dex": {
                     "$ref": "#/definitions/Dex"
